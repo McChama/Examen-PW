@@ -5,8 +5,25 @@
 	
 	<style type="text/css">
 		body{margin:0px;font-family: arial;}
+		#Arriba{
 
-		.menu{width:1022px;padding:10px 0px;border:1px solid white;margin:0px auto;text-align: left;}
+			background-color: #BB8FCE;
+			padding-left: 25%;
+			padding-bottom: auto;
+
+			
+		}
+		#pie{
+			border-top: 1px solid black;
+			width: 60%;
+			margin: 0 auto;
+			text-align: center;
+
+		}
+		.ocultar{display: none;}
+		.mostrar{display: inline;}
+
+		.menu{width:1022px;padding:10px 0px;border:1px solid white;margin:0px ;text-align: left;}
 
 		#opc1{padding:10px;background-color: lightblue;cursor:pointer;}
 		#opc2{padding:10px;background-color: lightyellow;cursor:pointer;}
@@ -18,6 +35,74 @@
 		#relleno {margin-bottom: 10px;}
 	
 	</style>
+
+	<script>
+
+		function generales(){
+			document.getElementById("datos").classList.toggle("mostrar");
+
+		}
+
+		function verInfo(){
+			document.getElementById("info").classList.toggle("mostrar");
+		}
+
+		function frutas(){
+			var DialogResultPVec = [];
+			var tipo_fruta;
+			DialogResultC = prompt("Elige la categoria de frutas \n1.- Dulces\n2.- Acidas\n3.- Neutras");
+			
+				if(DialogResultC==1)tipo_fruta = "dulces";
+				if(DialogResultC==2)tipo_fruta = "acidas";
+				if(DialogResultC==3)tipo_fruta = "neutras";
+			
+				
+
+			if(DialogResultC){
+				DialogResultP = prompt("Ingresa el numero de frutas a capturar: ",3);
+				if(DialogResultP)
+					for(var i = 0; i < DialogResultP; i++)
+						DialogResultPVec[i] = prompt("Ingresa la fruta #" + (i + 1) + ": ");
+							
+			}
+			var Contenido = document.getElementById("salida");
+			var nodo = document.createElement("p");
+			var fruta;
+			nodo.innerHTML = "Categoria de frutas " + tipo_fruta;
+			Contenido.appendChild(nodo);
+
+			for(i = 0;i<DialogResultPVec.length;i++){
+				fruta = document.createElement("li");
+				fruta.innerHTML = DialogResultPVec[i];
+				Contenido.appendChild(fruta);
+			}
+		}
+		
+				
+		function opcion(n){
+			ficha = document.getElementById("ficha");
+			procesos = document.getElementById("procesos");
+			seccion_publicitaria = document.getElementById("relleno");
+			switch(n){
+				case 1:
+					ficha.style.backgroundColor = "lightblue";
+					procesos.style.backgroundColor ="white";
+					seccion_publicitaria.style.backgroundColor = "white";
+					break;
+				case 2:
+					ficha.style.backgroundColor = "white";
+					procesos.style.backgroundColor ="lightyellow";
+					seccion_publicitaria.style.backgroundColor = "white";
+					break;
+				case 3:
+					ficha.style.backgroundColor = "white";
+					procesos.style.backgroundColor ="white";
+					seccion_publicitaria.style.backgroundColor = "lightgreen";
+					break;
+			}
+			
+		}
+	</script>
 </head>
 <body>
 	<div id="arriba">
@@ -28,20 +113,22 @@
 		<div id="ficha">
 			<h2>Sección de datos personales</h3>
 			<div id="foto"><img src="images/bitmojih.png" width="150" onclick="generales();"></div>
-			<div id="datos">
-				<h3 id="nombre">Nombre</h3>
-				<p id="profesion"></p>
-				<p id="procedencia"></p>
-				<p id="carrera"></p>
-				<p id="escuela"></p>
-				<p id="institucion"></p>
+			<div id="datos" class="ocultar">
+				<h3 id="nombre">Emiliano V&aacute;zquez Banda</h3>
+				<p id="profesion">Estudiante</p>
+				<p id="procedencia">Villa de &Aacute;lvarez, Colima, M&eacute;xico</p>
+				<p id="carrera"><strong>Carrera: </strong>Ingenieria en Telem&aacute;tica</p>
+				<p id="escuela"><strong>Escuela: </strong>Facultad de Telem&acute;tica</p>
+				<p id="institucion"><strong>Institucion: </strong>Universidad de Colima</p>
 			</div>
 		</div>
 		<div id="procesos">
 			<h2>Sección de procesos</h2>
 			<button onclick="frutas();">Cat&aacute;logo de la fruteria</button>
 			
-			<div id="salida"></div>
+			<div id="salida">
+
+			</div>
 		</div>
 		<div id="relleno">
 						
@@ -50,12 +137,12 @@
 				<img class="news" src="images/iconoNews.png"><div class="titIcono"><p>De viajes y algo mas<br><span id="sugiere">Sugerencia para ti</span></p></div> 
 				<br />
 				<img onclick="verInfo();" src="https://mazatleco.com/wp-content/uploads/2019/03/playa-cerro-chivos-mazatlan.jpg" width="200">
-				<p id="info">La playa del cerro de los chivos es pequeña y sus aguas son muy tranquilas con olas muy pequeñas. Se encuentran unos cuantos restaurantes cerca y esta pegado a la isla de la piedra mediante la escollera.</p>
+				<p id="info" class="ocultar"><br>La playa del cerro de los chivos es pequeña y sus aguas son muy tranquilas con olas muy pequeñas. Se encuentran unos cuantos restaurantes cerca y esta pegado a la isla de la piedra mediante la escollera.</p>
 			</div>
 		</div>
 	</div>
 	<div id="pie">
-		<p>&copy; Desarrollado por:<a href="#">Jona</a></p>
+		<p>&copy; Desarrollado por:<a href="#">Emiliano V&aacute;zquez Banda</a></p>
 	</div>
 </body>
 </html>
